@@ -253,8 +253,7 @@
                         '<div id="modalFilter" style="display: none;" class="cbp-hrsub"><div class="cbp-hrsub-inner"><h4 style="background: #b7b7b7;color: #fff;    padding: 10px 0px 5px 5px;">FILTER OPTIONS</h4><div><h4><strong>Rating</strong></h4><ul><li><input type="Checkbox" id="chkRatingAll" name="RatingCheckbox" value="1" checked/>All</li>' +
                      '<li><input type="checkbox" id="chkRatingzero" name="RatingCheckbox" value="AverageRating+EQ+0" /> <img style="width: 62px;height: 12px;display: inline-block;" src="images/0.png"/> </li><li><input type="checkbox" id="chkRatingone" name="RatingCheckbox" value="AverageRating+EQ+1"  /><img style="width: 62px;height: 12px;display: inline-block;" src="images/1.png"/></li><li><input type="checkbox"  id="chkRatingtwo" name="RatingCheckbox" value="AverageRating+EQ+2" /><img style="width: 62px;height: 12px;display: inline-block;" src="images/2.png"/></i>' +
                         '<li><input type="checkbox" id="chkRatingthree" name="RatingCheckbox" value="AverageRating+EQ+3"  /><img  style="width: 62px;height: 12px; display: inline-block;" src="images/3.png"/></li><li><input type="checkbox" id="chkRatingfour" name="RatingCheckbox" value="AverageRating+EQ+4"  /><img style="width: 62px;height: 12px;display: inline-block;" src="images/4.png"/></li><li><input type="checkbox" id="chkRatingfive" name="RatingCheckbox" value="AverageRating+EQ+5"  /><img style="width: 62px;height: 12px; display: inline-block;" src="images/5.png"/></li></ul></div><div><h4><strong>Asset Type</strong></h4><ul><li><input type="checkbox" name="AssetTypeCheckbox" value="2" checked/>All</li>' +
-                        '<li><input type="checkbox" name="AssetTypeCheckbox" value="AssetType+EQ+Image" />Photos</li><li><input type="checkbox" name="AssetTypeCheckbox" value="AssetType+EQ+Video" />Videos</li><li><input type="checkbox" name="AssetTypeCheckbox" value="AssetType+EQ+Audio" />Audio Files</li>' +
-             '<li><input type="checkbox" name="AssetTypeCheckbox" value="AssetType+EQ+File" />Other</li></ul></div><div><h4><strong>Approval Status</strong></h4><ul><li><input type="checkbox" name="StatusCheckbox" value="3" checked/>All</li>' +
+                        '<li><input type="checkbox" name="AssetTypeCheckbox" value="AssetType+EQ+Image" />Photos</li><li><input type="checkbox" name="AssetTypeCheckbox" value="AssetType+EQ+File" />Other</li></ul></div><div><h4><strong>Approval Status</strong></h4><ul><li><input type="checkbox" name="StatusCheckbox" value="3" checked/>All</li>' +
              '<li><input type="checkbox" name="StatusCheckbox" value="Status+EQ+0" />Approved</li><li><input type="checkbox" name="StatusCheckbox" value="Status+EQ+2" />Pending</li><li><input type="checkbox" name="StatusCheckbox" value="Status+EQ+5" />Rejected</li>' +
              '</ul></div></div><!-- /cbp-hrsub-inner --></div><!-- /cbp-hrsub --></li></ul></div>';
 
@@ -532,7 +531,7 @@
                             var assetname = '', overallassetrating = '', userrating = '', assetid = '', insertbtncsshideshow = '', assetcheckboxid = '', hootsuitdiv = '', hootsuitrating = '', assetcheckboxdiv = '', hootsuitebggrey = '', lowerhootsuitediv = '', imageinserthootsuitebtn = '', hootsuiteborderradius = '', hootsuitelowerdivid = '', arrowimagehootsuite = '', titledipayornot = '', shareassetmenuol = '', largeviewimgid = '';
                             var lishareassetmedium = '', lishareassetlarge = '', lishareassetsmall = '', lishareassetoriginal = '', liextralarge = '', outlookarrowimage = '', shareassetmenuclass = '', strempath = '';
                             /**/
-                            var filename = '', filetype = '', filesize = '', title = '', _title = '', description = '', descriptionstyle = '', expirydate = '', modified = '', uploadedat = '', keywords = '', imageheight = '', imagewidth = '', approveddate = '', descriptionsdiv = '', originalfileformat = '', price = '', publicurl = '', userratingtr = '', overallratingtr = '', uploadedby = '', originaloption='';
+                            var filename = '', filetype = '', filesize = '', title = '', _title = '', description = '', descriptionstyle = '', descriptionsdiv = '', userratingtr = '', overallratingtr = '', uploadedby = '',originaloption='';
                             if (offset === 0) {
                                 sasurlcount = 1;
                                 $('#bindsearchdatadiv').off("click");
@@ -558,13 +557,9 @@
                                 if (alllinks.file != null && alllinks.file != undefined) {
                                     checkifimage = mvCore.CheckExtension(alllinks.file.fileType.toLowerCase());
                                 }
-                                //if (checkifimage !== 'noimage') {
                                 $(alllinks).each(function (k, medialinks) {
                                     var defaultgroups = mvCore.GetCookies('cookiesdefaultgroup');
-
-
                                     var outlookarrowimage = '';
-                                    /** IsoString Date format (UTC dateformat with world time line) */
                                     if (medialinks.record.createdAt !== null && medialinks.record.createdAt !== '') {
                                         arrowimagehootsuite = '';
                                         var getdate = new Date(medialinks.record.createdAt);
@@ -602,7 +597,7 @@
                                             description = '';
                                         }
                                     }
-                                    if (assetOfflineList.indexOf(assetid) < 0) {    //Code to prevent duplicate assets to get loaded on screen disabled
+                                    if (assetOfflineList.indexOf(assetid) < 0) {    
                                         $(medialinks.media).each(function (index, links) {
                                             var large = 'noimage', small = 'noimage', original = 'noimage', thumbs = 'noimage', medium = 'noimage';
                                             var elassettype = '';
@@ -611,14 +606,14 @@
                                             selectbtnid = category + '_' + inc + '_' + 'selectbtn' + '_' + assetid;
 
                                             if (links.large !== undefined) {
-                                                large = links.large.trim(); //mvCore.CheckExtension(links.large.trim());
+                                                large = links.large.trim(); 
                                             }
                                             if (links.small !== undefined) {
-                                                small = links.small.trim(); // mvCore.CheckExtension(links.small.trim());
+                                                small = links.small.trim(); 
                                             }
                                             if (links.original !== undefined) {
                                                 if (defaultgroups.toLowerCase() === "system administrator" || defaultgroups.toLowerCase() === "administrators") {
-                                                    original = links.original.trim(); // mvCore.CheckExtension(links.original.trim());
+                                                    original = links.original.trim(); 
 
                                                     original = original.replace(/\ /g, '%20');
                                                 } else {
@@ -626,10 +621,10 @@
                                                 }
                                             }
                                             if (links.thumb !== undefined) {
-                                                thumbs = links.thumb.trim(); //mvCore.CheckExtension(links.thumb.trim());
+                                                thumbs = links.thumb.trim(); 
                                             }
                                             if (links.medium !== undefined) {
-                                                medium = links.medium.trim(); //mvCore.CheckExtension(links.medium.trim());
+                                                medium = links.medium.trim(); 
                                             }
 
                                             if (appsname == "outlook" || appsname == "eloqua" || appsname == "office" || appsname == 'drupal' || appsname == 'hootsuite') {
@@ -639,23 +634,22 @@
 
                                             if (links.download != undefined && links.download != '') {
                                                 if (appsname == 'office' || appsname == 'default' || appsname == 'drupal' || appsname == 'outlook' || appsname == 'eloqua' || appsname == 'mobileapp') {
-                                                    //this time not in use this code of block
-                                                    selectbuttonstyle = ''; // 'style="margin-left:10%;"';
+                                                    selectbuttonstyle = ''; 
                                                 }
                                                 else if (appsname.toLowerCase() == "hootsuite") {
                                                     selectbuttonstyle = 'style="display:none;"';
-
                                                 }
                                             } else {
                                                 selectbuttonstyle = 'style="display:none;"';
                                             }
                                             var selectassetbtnname = 'Select Asset'; var tooltiptile = '';
-                                            if (appsname.toLowerCase() == 'office111') {
+                                            if (appsname.toLowerCase() == 'office') {
                                                 selectassetbtnname = 'Insert Asset';
                                                 selectdropdownassetsizestyle = 'style="display:none"';
                                                 hootsuitebggrey = '';
                                                 hootsuiteborderradius = '';
-                                            } else if (appsname.toLowerCase() == 'outlook' || appsname.toLowerCase() == 'eloqua' || appsname.toLowerCase() == 'office' || appsname.toLowerCase() == 'drupal') {
+                                            } 
+                                            if (appsname.toLowerCase() == 'outlook' || appsname.toLowerCase() == 'eloqua' || appsname.toLowerCase() == 'office' || appsname.toLowerCase() == 'drupal') {
                                                 selectassetbtnname = "Insert Asset";
                                                 selectdropdownassetsizestyle = 'style="display:none"';
                                                 hootsuitebggrey = '';
@@ -703,7 +697,6 @@
 
                                                 assetcheckboxdiv = category + 'assetcheckboxdiv' + imagecounter + '_' + assetid;
                                                 hootsuitelowerdivid = category + '_' + imagecounter + '_' + assetid;
-                                                //hootsuitebggrey = 'hootsuitebggrey';
                                                 hootsuitrating = 'images/star' + overallassetrating + '.png';
                                                 var h_overallratingimagepath = 'images/' + overallassetrating + '.png';
                                                 var h_overallratingimg = '<img src="' + h_overallratingimagepath + '" height="10px" />';
@@ -713,7 +706,8 @@
                                                 imageinserthootsuitebtn = '<div id=' + assetcheckboxdiv + ' class="imageSelectBox"> <input type="checkbox" id=' + assetcheckboxid + '></div>';
                                                 lowerhootsuitediv = '<div class="lowerDiv"><button type="button" id=' + hootsuitelowerdivid + '><svg class="icon icon-share-square-o"><use xlink:href="#icon-share-square-o"></use></svg></button></div>';
                                                 hootsuitdiv = '<table width="100%" class="data-table"><tr><td colspan="2">' + longassetnamebrief.trim() + '</td></tr><tr><td>User Rating</td><td>' + h_userratingimg + '</td></tr><tr><td>Overall Rating</td><td>' + h_overallratingimg + '</td></tr><tr><td><input style="display:none;" type="checkbox" id=""></td></tr></table>';
-                                            } else if (appsname.toLowerCase() == 'drupal') {
+                                            }
+                                            if (appsname.toLowerCase() == 'drupal') {
                                                 selectassetbtnname = "Upload Asset";
                                             }
                                             var descriptionbrief = '', descriptiontooltip = '', wrapper = '';
@@ -4421,7 +4415,6 @@
             *
             */
             DocumentClickEvent: function () {
-                //this function will detect if user click on elements or not
                 $(window).click(function (event) {
                     if (defaultsettings.apps != null) {
                         var appsname = defaultsettings.apps;
@@ -4430,7 +4423,7 @@
 
                         var getid = target.id;
                         if (appsname.toLowerCase() == "office" || appsname.toLowerCase() == "drupal" || appsname.toLowerCase() == "default" || appsname.toLowerCase() == "eloqua" || appsname.toLowerCase() == "outlook" || appsname.toLowerCase() == "mobileapp") {
-                            if (appsname == 'outlook' || appsname == 'eloqua') {
+                            if (appsname == 'outlook' || appsname == 'eloqua' || appsname == 'office' || appsname == 'drupal') {
                                 if (getid == '') {
                                     $('.shareassetdropdown').css('display', 'none');
                                     $('.shareassetdropdownvideo').css('display', 'none');
@@ -4895,19 +4888,27 @@
                             if (assettypes != "video" && assettypes != "audio") {
                                 if (defaultsettings.apps == "outlook") {
                                     mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
-                                } else {
+                                } else if (defaultsettings.apps == "eloqua") {
                                     eloquabaseurl = mvCore.GetCookies("eloquabaseurl");
                                     mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetid, assetname, assettypes, eloquainstanceid, eloquaoauth_consumer_key, data.payload.thumbnailUrl, eloquabaseurl, renwidth, renheight);
                                     Events.LargeViewVideoStop($thisCell, lastplayedvideoid);
+                                } else if (defaultsettings.apps == "office") {
+                                    mvAppSdkCore.InsertOfficeVideoAudio(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
+                                } else if (defaultsettings.apps == "drupal") {
+                                    mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
                                 }
                                 Model.HideLoader();
                             } else {
                                 if (defaultsettings.apps == "outlook") {
                                     mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
-                                } else {
+                                } else if (defaultsettings.apps == "eloqua") {
                                     eloquabaseurl = mvCore.GetCookies("eloquabaseurl");
                                     mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetid, assetname, assettypes, eloquainstanceid, eloquaoauth_consumer_key, data.payload.thumbnailUrl, eloquabaseurl, renwidth, renheight);
                                     Events.LargeViewVideoStop($thisCell, lastplayedvideoid);
+                                } else if (defaultsettings.apps == "office") {
+                                    mvAppSdkCore.InsertOfficeVideoAudio(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
+                                } else if (defaultsettings.apps == "drupal") {
+                                    mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
                                 }
                                 Model.HideLoader();
                             }
@@ -4915,12 +4916,15 @@
                         else {
                             if (defaultsettings.apps == "outlook") {
                                 mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
-                            } else {
+                            } else if (defaultsettings.apps == "eloqua") {
                                 eloquabaseurl = mvCore.GetCookies("eloquabaseurl");
                                 mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetid, assetname, assettypes, eloquainstanceid, eloquaoauth_consumer_key, data.payload.thumbnailUrl, eloquabaseurl, "256", "256");
                                 Events.LargeViewVideoStop($thisCell, lastplayedvideoid);
+                            } else if (defaultsettings.apps == "office") {
+                                mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
+                            } else if (defaultsettings.apps == "drupal") {
+                                mvAppSdkCore.InsertAsset(data.payload.renditionUrl, assetname, spanid, assetid, data.payload.thumbnailUrl, assettypes);
                             }
-                            Model.HideLoader();
                             Model.HideLoader();
                         }
                         if (assettypes == "video" || assettypes == "audio") {
@@ -5648,6 +5652,7 @@
                     } else {
                         domaincatlist = [];
                     }
+                    
                 } else if (defaultsettings.apps == "office") {  //get categories as per app name
                     tempcatlist = mvCore.GetCookies('cookiedomainofficecategories');
                     if (tempcatlist !== "" && tempcatlist !== "Null" && tempcatlist !== undefined) {
@@ -5714,6 +5719,7 @@
                     } else {
                         domaincatlist = [];
                     }
+                    Events.GetRenditionConfig(token);
                 }
 
                 var defaultgroup = mvCore.GetCookies('cookiesdefaultgroup');
@@ -5748,8 +5754,6 @@
                 $('#errormessagediv').css('display', 'none');
                 $('#infomessagediv').css('display', 'none');
                 $('#errormessagediv').html('');
-
-
                 /*Code For enabling and disabling setting menu and Apps options*/
                 if (settings.apps === 'default' || settings.apps == 'drupal') {
                     $('#hootsuitmenubtn').css('display', 'none');

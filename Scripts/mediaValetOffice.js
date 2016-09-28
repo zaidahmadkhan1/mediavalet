@@ -434,6 +434,21 @@ if (typeof jQuery === 'undefined') {
         mediaValetOffice.prototype.ApplicationInsightsTracking = function (eventname) {
             appInsights.trackEvent(eventname);
         }
+        mediaValetOffice.prototype.InsertOfficeVideoAudio = function (asseturl, assetname, spanid, assetid, thumbs, assettype) {
+            try {
+                var insertassets = assetname + " ( " + asseturl + " ) ";
+                Office.context.document.setSelectedDataAsync(insertassets, function (asyncResult) {
+                    if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                        $('#errormessagediv').css('display', 'block');
+                        $('#errormessagediv').html('Errro in insertion of asset');
+                    }
+                });
+            }
+            catch(e){
+                $('#errormessagediv').css('display', 'block');
+                $('#errormessagediv').html(e.message);
+            }
+        }
     }
     source.mvAppSdkCore = new mediaValetOffice();
 

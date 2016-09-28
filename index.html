@@ -17,21 +17,23 @@
     </script>
     <script>
         jQuery(window).on("load", function () {
-            console.log(window.location.href)
 
-           // localStorage.setItem("eloquqafirsturl", window.location.href);
             $('#mvapp-container').LoginUI({
                 customText: 'Welcome To MediaValet',
                 setting: false,
                 menu: true,
                 apps: 'eloqua',
-                eloquaurl: 'https://mediavaletapps-dev.azurewebsites.net/',
-                instrumentalkey: 'e5582765-8ee2-42f3-830c-5a44b9bd225d',
+                eloquaurl: 'https://mvo365demo.mediavalet.com/githubmv/',
                 view:
                 {
                     recentview: true,
                 }
             });
+
+          /** ApplicationInsights 
+          *@param Instrumentation ID
+          */
+            mvAppSdkCore.ApplicationInsights('e5582765-8ee2-42f3-830c-5a44b9bd225d');
         });
 
     </script>
